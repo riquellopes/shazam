@@ -4,7 +4,7 @@ from taxas import Dolar, TesouroDireto
 # import time
 # from pprint import pprint
 
-# bot = telepot.Bot(os.environ.get("TOKEN"))
+# bot = telepot.Bot(os.environ.get("SHAZAM_TOKEN"))
 # show_keyboard = {'keyboard': [['Yes', 'LLL'], ['Maybe', 'Maybe not']]}
 # bot.sendMessage(51552312, 'e isso ai', reply_markup=show_keyboard)
 # bot.sendMessage(51552312, 'e isso ai')
