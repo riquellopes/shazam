@@ -1,20 +1,29 @@
 import os
+import asyncio
 import telepot
 from taxas import Dolar, TesouroDireto
-# import time
-# from pprint import pprint
+from telepot.delegate import per_chat_id
+from telepot.async.delegate import create_open
 
-# bot = telepot.Bot(os.environ.get("SHAZAM_TOKEN"))
-# show_keyboard = {'keyboard': [['Yes', 'LLL'], ['Maybe', 'Maybe not']]}
-# bot.sendMessage(51552312, 'e isso ai', reply_markup=show_keyboard)
-# bot.sendMessage(51552312, 'e isso ai')
 
-# response = bot.getUpdates()
+SHAZAM_TOKEN = os.environ.get("SHAZAM_TOKEN")
 
-# def handle_message(msg):
-# pprint(msg)
 
-# bot.notifyOnMessage(handle_message)
+class ProcessMessage(telepot.helper.ChatHandler):
 
-# while 1:
-# time.sleep(10)
+    def __init__(self, seed_tuple, timeout):
+        super(ProcessMessage, self).__init__(seed_tuple, timeout)
+
+    @asyncio.coroutine
+    def on_message(self, msg):
+        yield from self.sender.sendMessage("Show")
+
+bot = telepot.async.DelegatorBot(SHAZAM_TOKEN, [
+    (per_chat_id(), create_open(ProcessMessage, timeout=10)),
+])
+
+loop = asyncio.get_event_loop()
+loop.create_task(bot.messageLoop())
+print('Listening ...')
+
+loop.run_forever()
