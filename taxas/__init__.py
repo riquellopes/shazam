@@ -1,4 +1,4 @@
 from .dolar import Dolar
-from .tesouro import TesoutoDireto
+from .tesouro import TesouroDireto
 
-__all__ = ["Dolar", "TesoutoDireto"]
+__all__ = ["Dolar", "TesouroDireto"]

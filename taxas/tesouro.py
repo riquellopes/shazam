@@ -1,5 +1,5 @@
 # Recuperar taxas do tesouto direto.
-class TesoutoDireto(object):
+class TesouroDireto(object):
 
     def get():
         pass
