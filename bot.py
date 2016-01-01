@@ -1,5 +1,5 @@
 import telepot
-from taxas import Dolar, TesoutoDireto
+from taxas import Dolar, TesouroDireto
 # import time
 # from pprint import pprint
 
