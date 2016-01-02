@@ -4,5 +4,5 @@ from .taxa import Taxa
 
 class TesouroDireto(Taxa):
 
-    def get():
-        pass
+    def get(self):
+        super(TesouroDireto, self).get()
