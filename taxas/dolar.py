@@ -2,7 +2,7 @@
 import requests
 
 
-class Dolar(object):
+class Dolar:
 
     def get(self):
         response = requests.get("http://api.dolarhoje.com/")
