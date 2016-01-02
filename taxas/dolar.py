@@ -13,9 +13,12 @@ class Dolar:
         logr.info("INICIANDO CHAMADA AO SERVICO DE DOLAR")
         try:
             response = requests.get("http://api.dolarhoje.com")
+            value = response.text
+            if not value:
+                raise Exception("Valor nao existe.")
 
-            logr.info("DOLAR RECUPERADO COM SUCESSO R$ {0}.".format(response.text))
-            return "R$ {0}".format(response.text)
+            logr.info("DOLAR RECUPERADO COM SUCESSO R$ {0}.".format(value))
+            return "R$ {0}".format(value)
         except Exception as e:
             logr.error(e, exc_info=True)
             raise e
