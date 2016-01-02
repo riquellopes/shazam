@@ -16,7 +16,7 @@ class Cdi:
             html = BeautifulSoup(response.content, 'html.parser')
             cdi = html.find(id="ctl00_Banner_lblTaxDI").text
 
-            logr.info("CDI RECUPERA COM SUCESSO.")
+            logr.info("CDI RECUPERADO COM SUCESSO {0}.".format(cdi))
             return cdi
         except Exception as e:
             logr.error(e, exc_info=True)
