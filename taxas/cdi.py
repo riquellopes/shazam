@@ -3,11 +3,12 @@ import os
 import requests
 import logging
 from bs4 import BeautifulSoup
+from .taxa import Taxa
 
 logr = logging.getLogger(os.environ.get("LOG-NAME"))
 
 
-class Cdi:
+class Cdi(Taxa):
 
     def get(self):
         logr.info("INICIANDO CHAMADA AO SERVICO DE CDI")

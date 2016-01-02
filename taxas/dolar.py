@@ -2,12 +2,12 @@
 import os
 import requests
 import logging
-
+from .taxa import Taxa
 
 logr = logging.getLogger(os.environ.get("LOG-NAME"))
 
 
-class Dolar:
+class Dolar(Taxa):
 
     def get(self):
         logr.info("INICIANDO CHAMADA AO SERVICO DE DOLAR")

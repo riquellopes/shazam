@@ -1,5 +1,8 @@
 # Recuperar taxas do tesouto direto.
-class TesouroDireto:
+from .taxa import Taxa
+
+
+class TesouroDireto(Taxa):
 
     def get():
         pass
