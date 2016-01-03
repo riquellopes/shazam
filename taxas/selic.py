@@ -19,7 +19,7 @@ class Selic(Taxa):
             selic = html.find("table", {"class": "tabelaTaxaSelic"}).findAll("td")[1].text
 
             logr.info("SELIC RECUPERADA COM SUCESSO {0}.".format(selic))
-            return selic
+            return "{0}%".format(selic)
         except Exception as e:
             logr.error(e, exc_info=True)
             raise e
