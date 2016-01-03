@@ -1,12 +1,11 @@
 import os
-import asyncio
 import telepot
-from taxas import Dolar, TesouroDireto
-from telepot.delegate import per_chat_id
-from telepot.async.delegate import create_open
-
+import logging
+from taxas import Fabrica
+from telepot.delegate import per_chat_id, create_open
 
 SHAZAM_TOKEN = os.environ.get("SHAZAM_TOKEN")
+logr = logging.getLogger(os.environ.get("LOG-NAME"))
 
 
 class ProcessMessage(telepot.helper.ChatHandler):
@@ -14,16 +13,17 @@ class ProcessMessage(telepot.helper.ChatHandler):
     def __init__(self, seed_tuple, timeout):
         super(ProcessMessage, self).__init__(seed_tuple, timeout)
 
-    @asyncio.coroutine
     def on_message(self, msg):
-        yield from self.sender.sendMessage("Show")
+        try:
+            Fabrica.destroy()
+            fabrica = Fabrica(taxa=msg['text'].replace("/", ""))
+            self.sender.sendMessage(fabrica.get())
+        except Exception as e:
+            logr.error(e, exc_info=True)
 
-bot = telepot.async.DelegatorBot(SHAZAM_TOKEN, [
+bot = telepot.DelegatorBot(SHAZAM_TOKEN, [
     (per_chat_id(), create_open(ProcessMessage, timeout=10)),
 ])
 
-loop = asyncio.get_event_loop()
-loop.create_task(bot.messageLoop())
 print('Listening ...')
-
-loop.run_forever()
+bot.notifyOnMessage(run_forever=True)
