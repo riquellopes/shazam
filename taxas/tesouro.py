@@ -10,7 +10,7 @@ logr = logging.getLogger(os.environ.get("LOG-NAME"))
 TESOURO_URL = "http://www.tesouro.fazenda.gov.br/tesouro-direto-precos-e-taxas-dos-titulos"
 
 
-class TesouroDireto(Taxa):
+class Tesouro(Taxa):
 
     def get(self):
         try:
@@ -18,12 +18,14 @@ class TesouroDireto(Taxa):
             html = BeautifulSoup(response.content, 'html.parser')
             titulos = []
             trs = html.findAll("tr", {"class": "camposTesouroDireto"})
+
             for tr in trs:
+                td = tr.findAll("td")
                 titulos.append(
-                    "{0}{1}{2}".format(
-                        tr[0].find("td").text,
-                        tr[1].find("td").text,
-                        tr[2].find("td").text)
+                    "{0} | C:{1}% V:{2}% ".format(
+                        td[0].text,
+                        td[2].text,
+                        td[3].text)
                 )
             return "\n".join(titulos)
         except Exception as e:
