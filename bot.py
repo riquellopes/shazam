@@ -15,9 +15,11 @@ class ProcessMessage(telepot.helper.ChatHandler):
 
     def on_message(self, msg):
         try:
-            Fabrica.destroy()
-            fabrica = Fabrica(taxa=msg['text'].replace("/", ""))
-            self.sender.sendMessage(fabrica.get())
+            if msg['text'][0] == "/":
+                taxa = msg['text'][1:].lower()
+                Fabrica.destroy()
+                fabrica = Fabrica(taxa=taxa)
+                self.sender.sendMessage(fabrica.get())
         except Exception as e:
             logr.error(e, exc_info=True)
 
