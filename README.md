@@ -8,4 +8,5 @@ vários sites durante o dia, o Bot **@Shazam** vai agrupar várias cotações, b
 #### Variáveis de ambiente.
 ```bash
     $ LOG-NAME
+    $ SHAZAM_TOKEN
 ```
