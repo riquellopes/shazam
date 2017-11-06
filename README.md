@@ -11,3 +11,8 @@ vários sites durante o dia, o Bot **@Shazam** vai agrupar várias cotações, b
     $ LOG-NAME
     $ SHAZAM_TOKEN
 ```
+
+#### TODO
+* Adicionar suporte as cotações do bit coin.
+* Refatorar serviço de ações.
+* Adicionar suporte a FII/Valor do aluguel.
